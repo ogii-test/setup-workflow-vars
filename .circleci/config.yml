@@ -12,7 +12,7 @@ parameters:
 
 jobs:
   generate-var:
-    docker:
+    docker: 
       - image: cimg/base:stable
     steps:
       - checkout
