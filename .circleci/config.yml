@@ -22,7 +22,7 @@ jobs:
             Build_Version=$(cat OryxVersion.txt)
             jq -n --arg version $Build_Version '.build-version = $version' > parameters.json
       - run: cat parameters.json
-      - continuation:
+      - continuation/continue:
           configuration_path: ./continuation-config.yml
           parameters: parameters.json
 
