@@ -34,7 +34,7 @@ jobs:
           shell: bash.exe
           command: echo $BUILD_VERSION
 
-workflow:
+workflows:
   Parameter_Build:
     jobs:
       - job-1
