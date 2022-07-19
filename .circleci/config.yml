@@ -20,6 +20,8 @@ jobs:
           name: Get value for build-version parameter
           command: |
             Build_Version=$(cat OryxVersion.txt)
+            cat OryxVersion.txt
+            echo $Build_Version
             jq -n --arg version $Build_Version '.build-version = $version' > parameters.json
       - run: cat parameters.json
       - continuation/continue:
