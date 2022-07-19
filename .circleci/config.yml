@@ -28,7 +28,7 @@ jobs:
           parameters: parameters.json
 
 workflows:
-  workflow1:
+  generate-var:
     jobs:
       - generate-var
  
