@@ -29,5 +29,5 @@ jobs:
 workflows:
   workflow1:
     jobs:
-      - build
+      - generate-var
  
