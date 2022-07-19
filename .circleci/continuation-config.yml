@@ -1,0 +1,44 @@
+verison: 2.1
+
+orbs:
+  win: circleci/windows@2.2.0
+
+parameters:
+  build-version:
+    type: string
+    default: ""
+
+jobs:
+  job-1:
+    executor:
+      name: win/default
+      size: "medium"
+    environment:
+      BUILD_VERSION: << pipeline.parameters.build-version >>
+    steps:
+      - checkout
+      - run:
+          name: Check value of sample variable
+          shell: bash.exe
+          command: echo $BUILD_VERSION
+  job-2:
+    executor:
+      name: win/default
+      size: "medium"
+    environment:
+      BUILD_VERSION: << pipeline.parameters.build-version >>
+    steps:
+      - checkout
+      - run:
+          name: Check value of sample variable
+          shell: bash.exe
+          command: echo $BUILD_VERSION
+
+workflow:
+  Parameter_Build:
+    jobs:
+      - job-1
+      - job-2:
+          requires:
+            - job-1
+          
