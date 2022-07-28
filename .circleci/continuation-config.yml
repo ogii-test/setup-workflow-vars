@@ -7,6 +7,9 @@ parameters:
   build-version:
     type: string
     default: ""
+  INCA:
+    type: boolean
+    default: false
 
 jobs:
   job-1:
@@ -15,12 +18,15 @@ jobs:
       size: "medium"
     environment:
       BUILD_VERSION: << pipeline.parameters.build-version >>
+      INCA: << pipeline.parameters.INCA >>
     steps:
       - checkout
       - run:
           name: Check value of sample variable
           shell: bash.exe
-          command: echo $BUILD_VERSION
+          command: |
+            echo $BUILD_VERSION 
+            echo $INCA
   job-2:
     executor:
       name: win/default
