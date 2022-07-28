@@ -4,11 +4,7 @@ setup: true
 
 orbs: 
   continuation: circleci/continuation@0.3.1
-
-parameters:
-  build-version:
-    type: string
-    default: ""
+  path-filtering: circleci/path-filtering@0.0.2
 
 jobs:
   generate-var:
@@ -17,11 +13,16 @@ jobs:
     resource_class: small
     steps:
       - checkout
+      - path-filtering/set-parameters:
+          base-revision : main
+          mapping : |
+            * build-version $(echo 1)
+            #INCA/.* INCA true
       - run:
           name: Get value for build-version parameter
           command: |
-            Build_Version=$(cat OryxVersion.txt)
-            jq -n --arg version $Build_Version '."build-version" = $version' > parameters.json
+            #Build_Version=$(cat OryxVersion.txt)
+            #jq -n --arg version $Build_Version '."build-version" = $version' > parameters.json
       - run: cat parameters.json
       - continuation/continue:
           configuration_path: ./.circleci/continuation-config.yml
