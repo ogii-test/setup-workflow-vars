@@ -18,14 +18,12 @@ jobs:
           output-path: parameters.json
           mapping : |
             INCA/.* INCA true
-      - run: cat parameters.json
       - run:
           name: Get value for build-version parameter
           command: |
             Build_Version=$(cat OryxVersion.txt)
             JSON_PARAMS=$(cat parameters.json)
             echo $JSON_PARAMS | jq --arg version $Build_Version '. += {"build-version": $version}' > parameters.json
-      - run: cat parameters.json
       - continuation/continue:
           configuration_path: ./.circleci/continuation-config.yml
           parameters: parameters.json
