@@ -23,7 +23,7 @@ jobs:
           name: Get value for build-version parameter
           command: |
             Build_Version=$(cat OryxVersion.txt)
-            cat parameters.json | jq --arg version $Build_Version '. += {"build-version": $version}' > parameters.json
+             echo "$(cat parameters.json)" | jq --arg version $Build_Version '. += {"build-version": $version}' > parameters.json
       - run: cat parameters.json
       #- continuation/continue:
           #configuration_path: ./.circleci/continuation-config.yml
