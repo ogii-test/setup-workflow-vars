@@ -32,6 +32,6 @@ jobs:
 
 workflows:
   generate-var:
-    jobs:
+    jobs: 
       - generate-var
  
