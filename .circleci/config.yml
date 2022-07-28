@@ -16,7 +16,7 @@ jobs:
       - path-filtering/set-parameters:
           base-revision : main
           mapping : |
-            .* build-version ${CIRCLE_NODE_TOTAL}
+            .* build-version expandvars(CIRCLE_NODE_TOTAL)
             #INCA/.* INCA true
       - run:
           name: Get value for build-version parameter
