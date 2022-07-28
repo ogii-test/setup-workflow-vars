@@ -16,13 +16,12 @@ jobs:
       - path-filtering/set-parameters:
           base-revision : main
           mapping : |
-            .* build-version "expandvars(CIRCLE_NODE_TOTAL)"
-            #INCA/.* INCA true
+            INCA/.* INCA true
       - run:
           name: Get value for build-version parameter
           command: |
-            #Build_Version=$(cat OryxVersion.txt)
-            #jq -n --arg version $Build_Version '."build-version" = $version' > parameters.json
+            Build_Version=$(cat OryxVersion.txt)
+            jq -n --arg version $Build_Version '."build-version" = $version' > /tmp/pipeline-parameters.json
       - run: cat /tmp/pipeline-parameters.json
       #- continuation/continue:
           #configuration_path: ./.circleci/continuation-config.yml
