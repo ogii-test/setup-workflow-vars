@@ -9,7 +9,7 @@ parameters:
     default: ""
   INCA:
     type: boolean
-    default: ""
+    default: false
 
 jobs:
   job-1:
