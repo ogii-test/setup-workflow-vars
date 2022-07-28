@@ -19,7 +19,7 @@ jobs:
           mapping : |
             INCA/.* INCA true
       - run:
-          name: Get value for build-version parameter
+          name: Get value for build-version parameter and update parameters.json
           command: |
             Build_Version=$(cat OryxVersion.txt)
             JSON_PARAMS=$(cat parameters.json)
