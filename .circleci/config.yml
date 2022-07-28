@@ -23,10 +23,10 @@ jobs:
           command: |
             #Build_Version=$(cat OryxVersion.txt)
             #jq -n --arg version $Build_Version '."build-version" = $version' > parameters.json
-      - run: cat parameters.json
-      - continuation/continue:
-          configuration_path: ./.circleci/continuation-config.yml
-          parameters: parameters.json
+      - run: cat /tmp/pipeline-parameters.json
+      #- continuation/continue:
+          #configuration_path: ./.circleci/continuation-config.yml
+          #parameters: parameters.json
 
 workflows:
   generate-var:
