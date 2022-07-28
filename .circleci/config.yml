@@ -24,7 +24,7 @@ jobs:
           command: |
             Build_Version=$(cat OryxVersion.txt)
             JSON_PARAMS=$(cat parameters.json)
-             echo $JSON_PARAMS | jq --arg version $Build_Version '. += {"build-version": $version}' > parameters.json
+            echo $JSON_PARAMS | jq --arg version $Build_Version '. += {"build-version": $version}' > parameters.json
       - run: cat parameters.json
       - continuation/continue:
           configuration_path: ./.circleci/continuation-config.yml
