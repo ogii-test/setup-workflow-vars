@@ -15,14 +15,16 @@ jobs:
       - checkout
       - path-filtering/set-parameters:
           base-revision : main
+          output-path: parameters.json
           mapping : |
             INCA/.* INCA true
+      - run: cat parameters.json
       - run:
           name: Get value for build-version parameter
           command: |
             Build_Version=$(cat OryxVersion.txt)
-            jq -n --arg version $Build_Version '."build-version" = $version' > /tmp/pipeline-parameters.json
-      - run: cat /tmp/pipeline-parameters.json
+            jq -n --arg version $Build_Version '."build-version" = $version' > parameters.json
+      - run: cat parameters.json
       #- continuation/continue:
           #configuration_path: ./.circleci/continuation-config.yml
           #parameters: parameters.json
