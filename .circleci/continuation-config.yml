@@ -27,24 +27,29 @@ jobs:
           command: |
             echo $BUILD_VERSION 
             echo $INCA
-  job-2:
-    executor:
-      name: win/default
-      size: "medium"
-    environment:
-      BUILD_VERSION: << pipeline.parameters.build-version >>
-    steps:
-      - checkout
       - run:
-          name: Check value of sample variable
-          shell: bash.exe
-          command: echo $BUILD_VERSION
+          name: Install jFrog CLI
+          shell: powershell.exe
+          command: choco install jfrog-cli
+      - run:
+          name: Install jFrog CLI
+          shell: powershell.exe
+          command: jfrog.exe config add
+      - run:
+          name: Jfrog Config
+          shell: powershell.exe
+          command: jfrog c s
+      - run:
+          name: Jq Install
+          shell: powershell.exe
+          command: choco install jq --true 
+      - run:
+          name: Jfrog_build_Version
+          shell: powershell.exe
+          command: |
+           # code for building jfrog, can use $BUILD_VERSION
 
 workflows:
   Parameter_Build:
     jobs:
       - job-1
-      - job-2:
-          requires:
-            - job-1
-          
